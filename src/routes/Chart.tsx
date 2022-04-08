@@ -32,29 +32,15 @@ function Chart({ coinId }: ChartProps) {
       ) : (
         <ApexChart
           type="line"
-          series={[
-            {
-              name: "Price",
-              data: data?.map((price) => price.close),
-            },
-          ]}
+          series={[{ name: "price", data: data?.map((price) => price.close) }]}
           options={{
-            theme: {
-              mode: "dark",
-            },
-            chart: {
-              height: 300,
-              width: 500,
-              toolbar: {
-                show: false,
-              },
-              background: "transparent",
-            },
-            grid: { show: false },
+            theme: { mode: "dark" },
+            chart: { height: 500, width: 500, toolbar: { show: false } },
             stroke: {
               curve: "smooth",
-              width: 4,
+              width: 3,
             },
+            grid: { show: false },
             yaxis: {
               show: false,
             },
