@@ -8,10 +8,10 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 import styled from "styled-components";
-import Price from "./Price";
-import Chart from "./Chart";
 import { useQuery } from "react-query";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
+import Price from "./Price";
+import Chart from "./Chart";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -89,7 +89,7 @@ interface RouteState {
   name: string;
 }
 
-interface IInfo {
+interface InfoData {
   id: string;
   name: string;
   symbol: string;
@@ -112,7 +112,7 @@ interface IInfo {
   last_data_at: string;
 }
 
-interface IPrice {
+interface PriceData {
   id: string;
   name: string;
   symbol: string;
@@ -151,11 +151,11 @@ function Coin() {
   const { state } = useLocation<RouteState>();
   const priceMatch = useRouteMatch("/:coinId/price");
   const chartMatch = useRouteMatch("/:coinId/chart");
-  const { isLoading: infoLoading, data: infoData } = useQuery<IInfo>(
+  const { isLoading: infoLoading, data: infoData } = useQuery(
     ["info", coinId],
     () => fetchCoinInfo(coinId)
   );
-  const { isLoading: tickersLoading, data: tickersData } = useQuery<IPrice>(
+  const { isLoading: tickersLoading, data: tickersData } = useQuery(
     ["tickers", coinId],
     () => fetchCoinTickers(coinId),
     {
